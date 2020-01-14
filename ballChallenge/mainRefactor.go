@@ -6,6 +6,7 @@ import (
 	"log"
 	"math"
 	"reflect"
+	"github.com/pkg/profile"
 )
 
 type AllLevels struct {
@@ -134,6 +135,9 @@ func (l *AllLevels) LevelHourController() bool {
 }
 
 func main() {
+	// CPU profiling by default
+	defer profile.Start().Stop()
+	
 	timer := 0.0
 
 	// instantiate levels struct
