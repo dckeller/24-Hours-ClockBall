@@ -6,7 +6,6 @@ import (
 	"log"
 	"math"
 	"reflect"
-	"github.com/pkg/profile"
 )
 
 type AllLevels struct {
@@ -48,10 +47,8 @@ func (l *AllLevels) ClearHourBalls() []int {
 }
 
 func ReverseSort(level []int) {
-	s := reflect.ValueOf(level)
-	swp := reflect.Swapper(s.Interface())
-	for i, j := 0, s.Len()-1; i < j; i, j = i+1, j-1 {
-		swp(i, j)
+	for i, j := 0, len(level)-1; i < j; i, j = i+1, j-1 {
+		level[i], level[j] == level[j], level[i]
 	}
 }
 
@@ -135,9 +132,6 @@ func (l *AllLevels) LevelHourController() bool {
 }
 
 func main() {
-	// CPU profiling by default
-	defer profile.Start().Stop()
-	
 	timer := 0.0
 
 	// instantiate levels struct
@@ -154,11 +148,11 @@ func main() {
 	_, err := fmt.Scanf("%d", &Balls)
 
 	// get user input for minutes to run
-	// fmt.Println("How many minutes would you like to go for?")
-	// var FloatToInt float64
-	// var mins int
-	// _, err = fmt.Scanf("%d", &mins)
-	// FloatToInt = float64(mins)
+	fmt.Println("How many minutes would you like to go for?")
+	var FloatToInt float64
+	var mins int
+	_, err = fmt.Scanf("%d", &mins)
+	FloatToInt = float64(mins)
 
 	// create base level
 	newBase, err := all.MakeBase(Balls)
